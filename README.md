@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./IMAGENES/MK_Dragon.jpg">
+  <img src="./IMAGENES/MK_Dragon.gif">
 </div>
 
 ## ✨ ¡Bienvenidos! ✨
