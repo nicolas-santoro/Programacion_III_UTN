@@ -1,2 +1,3 @@
-# Programacion_III_UTN
-Actividades de toda la materia de Programación III
+<div align="center">
+  <img src="IMAGENES/MK_Dragon.png" width="300px">
+</div>
