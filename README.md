@@ -47,3 +47,7 @@ Si tienen dudas o sugerencias, podrán contactarme por:
 
 - 📧 **Correo electrónico**: [santoronicolas2006@gmail.com](mailto:santoronicolas2006@gmail.com)
 - 💻 **GitHub**: [@nicolas-santoro](https://github.com/nicolas-santoro)
+
+<div align="center">
+  <img src="./IMAGENES/MK_Fatality.gif">
+</div>
