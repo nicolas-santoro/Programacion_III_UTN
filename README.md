@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./IMAGENES/Pikachu_Chilling.gif" width="300px">
+  <img src="./IMAGES/Pikachu_Chilling.gif" width="300px">
 </div>
 
 ## ✨ ¡Bienvenidos! ✨
@@ -49,5 +49,5 @@ Si tienen dudas o sugerencias, podrán contactarme por:
 - 💻 **GitHub**: [@nicolas-santoro](https://github.com/nicolas-santoro)
 
 <div align="center">
-  <img src="./IMAGENES/Haunter_Laughing.gif" width="300px">
+  <img src="./IMAGES/Haunter_Laughing.gif" width="300px">
 </div>
