@@ -8,23 +8,6 @@
 
 Este repositorio contiene **las tareas resueltas** a lo largo de la cursada, como parte del programa de la **Tecnicatura Universitaria en Programación**. Su objetivo es servir como material de consulta, práctica y seguimiento del progreso.
 
-🔗 **Repositorio:** [GitHub - Tareas Programación III](https://github.com/nicolas-santoro/Programacion_III_UTN)
-
----
-
-## 📂 Estructura del Repositorio 📂
-
-```bash
-Programacion_III_UTN_2025/
-│── Clase 1/
-│   ├── resolucion.html/css/js
-│── Clase 2/
-│   ├── ...
-│── Clase 3/
-│   ├── ...
-│── README.md
-```
-
 ---
 
 ## 🧰 Tecnologías Usadas 🧰
@@ -46,7 +29,6 @@ Programacion_III_UTN_2025/
 Si tienen dudas o sugerencias, podrán contactarme por:
 
 - 📧 **Correo electrónico**: [santoronicolas2006@gmail.com](mailto:santoronicolas2006@gmail.com)
-- 💻 **GitHub**: [@nicolas-santoro](https://github.com/nicolas-santoro)
 
 <div align="center">
   <img src="./IMAGES/Haunter_Laughing.gif" width="300px">
