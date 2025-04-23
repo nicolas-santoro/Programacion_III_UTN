@@ -36,7 +36,7 @@ El curso está dividido en dos partes:
 - ✅ CSS3 - Diseño responsivo y animaciones modernas
 - ✅ JavaScript (ES6+) - Interactividad y manipulación del DOM
 
-🖥️ Backend (Próximamente)
+🖥️ Backend
 - 🔄 Node.js - Runtime de JavaScript para servidor
 - 🔄 Express.js - Framework web rápido y minimalista
 - 🔄 MySQL - Sistema de gestión de bases de datos
