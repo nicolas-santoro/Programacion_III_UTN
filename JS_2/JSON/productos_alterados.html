@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Productos Pokémon</title>
+    </head>
+    <body>
+        <h1>Lista de Productos</h1>
+        
+        <script type="module">
+            import productos from './productos.js';  // Importa los productos
+
+            productos.forEach(producto => {
+                if (producto.precio % 2 !== 0) { // Verifica si el precio es impar
+                    producto.moneda = "usd";
+                }
+            });
+
+            console.log("Productos con posibles monedas agregadas:");
+            productos.forEach(producto => {
+                console.log(producto);
+            });
+
+            productos.forEach(producto => {
+                if (producto.precio % 2 === 0) { // Verifica si el precio es par
+                    delete producto.fecha_vencimiento;
+                }
+            });
+
+            console.log("Productos después de eliminar fechaVencimiento:");
+            productos.forEach(producto => {
+                console.log(producto);
+            });
+        </script>
+    </body>
+</html>
