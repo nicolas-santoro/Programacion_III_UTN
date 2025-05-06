@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mostrar Remeras</title>
+        <script src="remeras.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+    
+            section {
+                margin-bottom: 30px;
+            }
+    
+            input[type="text"] {
+                margin: 5px;
+                padding: 5px;
+            }
+    
+            input[type="button"] {
+                padding: 5px 10px;
+            }
+    
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+    
+            th, td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+            }
+    
+            thead {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <section id="listado">
+            <h1>Listado de Remeras</h1>
+            <input type="button" id="btnMostrar" value="Mostrar Remeras">
+            <div id="contenedorTabla"></div>
+        </section>
+
+        <script>
+            function guardarRemeras() {
+                if (!localStorage.getItem("remeras")) {
+                    localStorage.setItem("remeras", JSON.stringify(remeras));
+                    console.log("Datos guardados en localStorage.");
+                    alert("Datos guardados en localStorage.");
+                } 
+                
+                else {
+                    console.log("Datos recuperados de localStorage.");
+                    alert("Datos recuperados de localStorage.");
+                }
+            }
+            
+            function mostrarRemeras() {
+                const contenedor = document.getElementById("contenedorTabla");
+                contenedor.innerHTML = "";
+
+                const datos = JSON.parse(localStorage.getItem("remeras"));
+                if (!datos || !Array.isArray(datos)) {
+                    contenedor.textContent = "No hay datos disponibles.";
+                    return;
+                }
+
+                const tabla = document.createElement("table");
+
+                // Encabezado
+                const thead = document.createElement("thead");
+
+                // Fila para "Remera" y "Manufacturero"
+                const filaHead1 = document.createElement("tr");
+                filaHead1.classList.add("encabezado-remera-manufacturero");
+                const thRemera = document.createElement("th");
+                thRemera.setAttribute("colspan", "5"); // Agrupa las 5 primeras columnas bajo "Remera"
+                thRemera.textContent = "Remera";
+                filaHead1.appendChild(thRemera);
+
+                const thManofacturero = document.createElement("th");
+                thManofacturero.setAttribute("colspan", "4"); // Agrupa las 2 columnas de manufacturero bajo "Manufacturero"
+                thManofacturero.textContent = "Manufacturero";
+                filaHead1.appendChild(thManofacturero);
+
+                // Fila para los títulos específicos de cada columna
+                const filaHead2 = document.createElement("tr");
+                ["ID", "Slogan", "Talle", "Precio", "Color", "Nombre", "Pais", "Ciudad", "Logo"].forEach(titulo => {
+                    const th = document.createElement("th");
+                    th.textContent = titulo;
+                    filaHead2.appendChild(th);
+                });
+
+                // Agregar las filas de encabezado a la tabla
+                thead.appendChild(filaHead1);
+                thead.appendChild(filaHead2);
+                tabla.appendChild(thead);
+
+                // Cuerpo
+                const tbody = document.createElement("tbody");
+                datos.forEach(remera => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${remera.id}</td>
+                        <td>${remera.slogan}</td>
+                        <td>${remera.size}</td>
+                        <td>${remera.price}</td>
+                        <td>${remera.color}</td>
+                        <td>${remera.manofacturer.name}</td>
+                        <td>${remera.manofacturer.location.country}</td>
+                        <td>${remera.manofacturer.location.city}</td>
+                        <td><img src="${remera.manofacturer.logo}" alt="Logo de ${remera.manofacturer.name}" width="50"></td>
+                    `;
+                    tbody.appendChild(fila);
+                });
+                tabla.appendChild(tbody);
+
+                contenedor.appendChild(tabla);
+            }
+
+            window.onload = function () {
+                guardarRemeras();
+                document.getElementById("btnMostrar").addEventListener("click", mostrarRemeras);
+            };
+        </script>
+    </body>
+</html>

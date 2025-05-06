@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mostrar Jotasones</title>
+        <script src="jotasones.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #eef2f7;
+                padding: 20px;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            input[type="button"] {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            #contenedorTabla {
+                margin-top: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: white;
+            }
+
+            th, td {
+                padding: 12px;
+                border: 1px solid #ccc;
+                text-align: center;
+            }
+
+            th {
+                background-color: #dddddd;
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tbody tr:nth-child(odd) {
+                background-color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Listado de Jotasones</h1>
+        <input type="button" id="btnMostrar" value="Mostrar Jotasones">
+        <div id="contenedorTabla"></div>
+
+        <script>
+            function guardarOJotasones() {
+                if (!localStorage.getItem("jotasones")) {
+                    localStorage.setItem("jotasones", JSON.stringify(jotasones));
+                    console.log("Datos guardados en localStorage.");
+                    alert("Datos guardados en localStorage.");
+                } 
+                
+                else {
+                    console.log("Datos recuperados de localStorage.");
+                    alert("Datos recuperados de localStorage.");
+                }
+            }
+
+            function mostrarJotasones() {
+                const contenedor = document.getElementById("contenedorTabla");
+                contenedor.innerHTML = "";
+
+                const datos = JSON.parse(localStorage.getItem("jotasones"));
+                if (!datos || !Array.isArray(datos)) {
+                    contenedor.textContent = "No hay datos disponibles.";
+                    return;
+                }
+
+                const tabla = document.createElement("table");
+
+                // Encabezado
+                const thead = document.createElement("thead");
+                const filaHead = document.createElement("tr");
+                ["ID", "Valor 1", "Valor 2"].forEach(titulo => {
+                    const th = document.createElement("th");
+                    th.textContent = titulo;
+                    filaHead.appendChild(th);
+                });
+                thead.appendChild(filaHead);
+                tabla.appendChild(thead);
+
+                // Cuerpo
+                const tbody = document.createElement("tbody");
+                datos.forEach(jota => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${jota.id}</td>
+                        <td>${jota.valor_1}</td>
+                        <td>${jota.valor_2}</td>
+                    `;
+                    tbody.appendChild(fila);
+                });
+                tabla.appendChild(tbody);
+
+                contenedor.appendChild(tabla);
+            }
+
+            window.onload = function () {
+                guardarOJotasones();
+                document.getElementById("btnMostrar").addEventListener("click", mostrarJotasones);
+            };
+        </script>
+    </body>
+</html>

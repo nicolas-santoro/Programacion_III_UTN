@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Remeras</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+
+            section {
+                margin-bottom: 30px;
+            }
+
+            input[type="text"] {
+                margin: 5px;
+                padding: 5px;
+            }
+
+            input[type="button"] {
+                padding: 5px 10px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+
+            th, td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+            }
+
+            thead {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Sección superior: Formulario -->
+        <section id="formulario">
+            <h2>Agregar nueva remera</h2>
+            <input type="text" id="slogan" placeholder="Slogan">
+            <input type="text" id="size" placeholder="Tamaño">
+            <input type="text" id="price" placeholder="Precio">
+            <input type="text" id="color" placeholder="Color">
+            <input type="text" id="manufacturerName" placeholder="Nombre del Manufacturero">
+            <input type="text" id="country" placeholder="País del Manufacturero">
+            <input type="text" id="city" placeholder="Ciudad del Manufacturero">
+            <input type="button" id="btnAgregar" value="Agregar Remera">
+            <input type="button" id="btnModificar" value="Modificar Remera" style="display: none;">
+        </section>
+
+        <!-- Sección inferior: Tabla de resultados -->
+        <section id="listado">
+            <h2>Listado de remeras</h2>
+            <div id="tablaRemeras"></div>
+        </section>
+
+        <script>
+            let remeras = JSON.parse(localStorage.getItem("remeras")) || [];
+
+            window.addEventListener("load", mostrarTabla);
+            document.getElementById("btnAgregar").addEventListener("click", agregarRemera);
+
+            function agregarRemera() {
+                const slogan = document.getElementById("slogan").value;
+                const size = document.getElementById("size").value;
+                const price = document.getElementById("price").value;
+                const color = document.getElementById("color").value;
+                const manufacturerName = document.getElementById("manufacturerName").value;
+                const country = document.getElementById("country").value;
+                const city = document.getElementById("city").value;
+
+                if (!slogan || !size || !price || !color || !manufacturerName || !country || !city) {
+                    alert("Completá todos los campos.");
+                    return;
+                }
+
+                const nuevoId = remeras.length > 0 ? remeras[remeras.length - 1].id + 1 : 1;
+
+                const nuevaRemera = {
+                    id: nuevoId,
+                    slogan,
+                    size,
+                    price,
+                    color,
+                    manofacturer: {
+                        name: manufacturerName,
+                        logo: "https://robohash.org/authicperferendis.bmp?size=50x50&set=set1",
+                        location: {
+                            country,
+                            city
+                        }
+                    }
+                };
+
+                remeras.push(nuevaRemera);
+                localStorage.setItem("remeras", JSON.stringify(remeras));
+                mostrarTabla();
+
+                document.querySelectorAll("#formulario input[type='text']").forEach(input => input.value = "");
+
+                alert("¡Remera agregada correctamente!");
+            }
+
+            function mostrarTabla() {
+                const div = document.getElementById("tablaRemeras");
+                div.innerHTML = "";
+
+                if (remeras.length === 0) {
+                    div.innerHTML = "<p>No hay remeras para mostrar.</p>";
+                    return;
+                }
+
+                const tabla = document.createElement("table");
+
+                const thead = document.createElement("thead");
+                const filaHead = document.createElement("tr");
+                [
+                    "ID", "Slogan", "Tamaño", "Precio", "Color",
+                    "Nombre del Manufacturero", "Logo del Manufacturero", "País del Manufacturero", "Ciudad del Manufacturero", "ACCION"
+                ].forEach(titulo => {
+                    const th = document.createElement("th");
+                    th.textContent = titulo;
+                    filaHead.appendChild(th);
+                });
+                thead.appendChild(filaHead);
+                tabla.appendChild(thead);
+
+                const tbody = document.createElement("tbody");
+
+                remeras.forEach((remera, index) => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${remera.id}</td>
+                        <td>${remera.slogan}</td>
+                        <td>${remera.size}</td>
+                        <td>${remera.price}</td>
+                        <td>${remera.color}</td>
+                        <td>${remera.manofacturer.name}</td>
+                        <td><img src="${remera.manofacturer.logo}" alt="logo"></td>
+                        <td>${remera.manofacturer.location.country}</td>
+                        <td>${remera.manofacturer.location.city}</td>
+                        <td><a href="#" class="eliminar" data-index="${index}">ELIMINAR</a>
+                            <br>
+                            <a href="#" class="modificar" data-index="${index}">MODIFICAR</a></td>
+                    `;
+                    tbody.appendChild(fila);
+                });
+
+                tabla.appendChild(tbody);
+                div.appendChild(tabla);
+
+                eliminarRemeras();
+                modificarRemeras();
+            }
+
+            function eliminarRemeras() {
+                document.querySelectorAll(".eliminar").forEach(enlace => {
+                    enlace.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        const index = parseInt(this.dataset.index);
+
+                        if (confirm ("¿Estás seguro que querés eliminar esta remera?")) {
+                            remeras.splice(index, 1); // Usamos la variable global
+                            localStorage.setItem("remeras", JSON.stringify(remeras));
+                            alert("¡Remera eliminada correctamente!");
+
+                            mostrarTabla(); // Esto ahora funcionará correctamente
+                        } 
+                        
+                        else {
+                            alert("Eliminación cancelada...");
+                        }
+                    });
+                });
+            }
+
+            let indiceRemeraModificar = null;
+
+            document.getElementById("btnModificar").addEventListener("click", () => {
+                if (indiceRemeraModificar === null) return;
+
+                if (confirm ("¿Estás seguro que querés modificar esta remera?")) {
+                    const slogan = document.getElementById("slogan").value;
+                    const size = document.getElementById("size").value;
+                    const price = document.getElementById("price").value;
+                    const color = document.getElementById("color").value;
+                    const manufacturerName = document.getElementById("manufacturerName").value;
+                    const country = document.getElementById("country").value;
+                    const city = document.getElementById("city").value;
+
+                    if (!slogan || !size || !price || !color || !manufacturerName || !country || !city) {
+                        alert("Completá todos los campos.");
+                        return;
+                    }
+
+                    remeras = JSON.parse(localStorage.getItem("remeras")) || [];
+
+                    remeras[indiceRemeraModificar].slogan = slogan;
+                    remeras[indiceRemeraModificar].size = size;
+                    remeras[indiceRemeraModificar].price = price;
+                    remeras[indiceRemeraModificar].color = color;
+                    remeras[indiceRemeraModificar].manofacturer.name = manufacturerName;
+                    remeras[indiceRemeraModificar].manofacturer.location.country = country;
+                    remeras[indiceRemeraModificar].manofacturer.location.city = city;
+
+                    localStorage.setItem("remeras", JSON.stringify(remeras));
+                    mostrarTabla();
+
+                    alert("¡Remera modificada correctamente!");
+
+                    document.querySelectorAll("#formulario input[type='text']").forEach(input => input.value = "");
+                    document.getElementById("btnModificar").style.display = "none";
+                    document.getElementById("btnAgregar").style.display = "inline-block";
+                    indiceRemeraModificar = null;
+                } 
+                
+                else {
+                    alert("Modificación cancelada...");
+                }
+            });
+
+            function modificarRemeras() {
+                document.querySelectorAll(".modificar").forEach(enlace => {
+                    enlace.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        const index = parseInt(this.dataset.index);
+                        const remera = remeras[index];
+
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+
+                        document.getElementById("slogan").value = remera.slogan;
+                        document.getElementById("size").value = remera.size;
+                        document.getElementById("price").value = remera.price;
+                        document.getElementById("color").value = remera.color;
+                        document.getElementById("manufacturerName").value = remera.manofacturer.name;
+                        document.getElementById("country").value = remera.manofacturer.location.country;
+                        document.getElementById("city").value = remera.manofacturer.location.city;
+
+                        indiceRemeraModificar = index;
+                        document.getElementById("btnModificar").style.display = "inline-block";
+                        document.getElementById("btnAgregar").style.display = "none";
+                    });
+                });
+            }
+        </script>
+    </body>
+</html>
