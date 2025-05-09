@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Crear Usuario</title>
+        <style>
+            form { max-width: 300px; margin: 2rem auto; display: flex; flex-direction: column; gap: 0.5rem; }
+            label, input, button { font-size: 1rem; }
+            #respuesta { margin: 2rem auto; width: 80%; max-width: 500px; white-space: pre-wrap; background: #f4f4f4; padding: 1rem; border-radius: 5px; }
+        </style>
+    </head>
+    <body>
+
+        <h2 style="text-align: center;">Formulario de Usuario</h2>
+
+        <form id="formulario">
+            <label>Nombre:
+            <input type="text" name="nombre" required>
+            </label>
+
+            <label>Trabajo:
+            <input type="text" name="trabajo" required>
+            </label>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div id="respuesta"></div>
+
+        <script>
+            document.getElementById('formulario').addEventListener('submit', async function (e) {
+                e.preventDefault();
+    
+                const formData = new FormData(e.target);
+                const data = {
+                    nombre: formData.get('nombre'),
+                    trabajo: formData.get('trabajo')
+                };
+    
+                try {
+                    const respuesta = await fetch('https://reqres.in/api/users', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json',
+                                    'x-api-key': 'reqres-free-v1'},
+                        body: JSON.stringify(data)
+                    });
+    
+                    const json = await respuesta.json();
+                    document.getElementById('respuesta').textContent = JSON.stringify(json, null, 2);
+                } 
+                
+                catch (error) {
+                    document.getElementById('respuesta').textContent = 'Error al enviar datos: ' + error.message;
+                }
+            });
+        </script>
+    </body>
+</html>

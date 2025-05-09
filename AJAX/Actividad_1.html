@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Usuarios</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 60%;
+                margin: 2rem auto;
+                font-family: sans-serif;
+            }
+
+            th, td {
+                border: 1px solid #ccc;
+                padding: 0.5rem;
+            }
+
+            th {
+                background-color: #f0f0f0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;">Lista de Usuarios</h1>
+
+        <table id="tablaUsuarios">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <script>
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users.json', true);
+            xhr.responseType = 'json';
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const usuarios = xhr.response;
+                    const tbody = document.querySelector('#tablaUsuarios tbody');
+
+                    usuarios.forEach(usuario => {
+                    const tr = document.createElement('tr');
+
+                    ['id', 'nombre', 'apellido', 'email'].forEach(key => {
+                        const td = document.createElement('td');
+                        td.textContent = usuario[key];
+                        tr.appendChild(td);
+                    });
+
+                    tbody.appendChild(tr);
+                    });
+                } 
+                
+                else {
+                    console.error('Error al cargar los usuarios:', xhr.status);
+                }
+            };
+
+            xhr.onerror = function () {
+                console.error('Error de red al intentar cargar users.json');
+            };
+
+            xhr.send();
+        </script>
+    </body>
+</html>
