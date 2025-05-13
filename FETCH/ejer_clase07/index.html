@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - Usuarios</title>
+
+    <link href="./img/utnLogo.png" rel="icon" type="image/png" />
+    
+    <!-- Estilos propios -->
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+
+	<!-- Funciones Propias -->
+    <script src="./constantes.js"></script>
+	<script src="./manejadora.js"></script>
+</head>
+<body>
+    <div id="listado"></div>
+
+    <div id="paginador">
+        <button id="anterior">RETROCEDER</button>
+        <button id="siguiente">AVANZAR</button>
+    </div>
+
+    <div id="detalleUsuario">
+        <h2>Detalles del Usuario</h2>
+        
+        <form id="formularioDetalles">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" readonly>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" readonly>
+
+            <label for="email">Correo:</label>
+            <input type="text" id="email" readonly>
+
+            <img id="avatar" src="" alt="Avatar" class="avatar">
+        </form>
+    </div>
+</body>
+</html>
