@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .formulario {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+  
+  .formulario h1 {
+    text-align: center;
+    font-size: 1.8em;
+  }
+  
+  .formulario label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1em;
+  }
+  
+  .formulario input[type="text"],
+  .formulario input[type="email"],
+  .formulario input[type="password"],
+  .formulario input[type="date"],
+  .formulario textarea,
+  .formulario select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  
+  .formulario input[type="submit"],
+  .formulario input[type="reset"] {
+    width: 48%;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .formulario .botones {
+    display: flex;
+    justify-content: space-between;
+    gap: 4%;
+  }
+  
+  .subtitulo {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .interes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 1em;
+  }
+  
+  /* Adaptación a pantallas pequeñas */
+  @media (max-width: 500px) {
+    .formulario {
+      padding: 20px;
+    }
+  
+    .formulario h1 {
+      font-size: 1.5em;
+    }
+  
+    .formulario label,
+    .formulario input,
+    .formulario textarea,
+    .formulario select,
+    .interes {
+      font-size: 0.95em;
+    }
+  
+    .formulario .botones {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .formulario input[type="submit"],
+    .formulario input[type="reset"] {
+      width: 100%;
+    }
+  }  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <title>Campos Dinámicos</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        }
+
+        .campo {
+        margin-bottom: 10px;
+        }
+
+        #contenedorCampos input {
+        display: block;
+        margin-bottom: 5px;
+        }
+
+        button {
+        margin-top: 10px;
+        }
+    </style>
+    </head>
+    <body>
+
+    <h2>Agregar nombres</h2>
+
+    <form id="miFormulario">
+        <div id="contenedorCampos">
+        <input type="text" name="nombre[]" placeholder="Nombre 1" class="campo">
+        </div>
+        <button type="button" onclick="agregarCampo()">Agregar otro nombre</button>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        let contador = 2;
+
+        function agregarCampo() {
+        const contenedor = document.getElementById("contenedorCampos");
+        const nuevoInput = document.createElement("input");
+
+        nuevoInput.type = "text";
+        nuevoInput.name = "nombre[]";
+        nuevoInput.placeholder = "Nombre " + contador;
+        nuevoInput.className = "campo";
+
+        contenedor.appendChild(nuevoInput);
+        contador++;
+        }
+    </script>
+    </body>
+</html>

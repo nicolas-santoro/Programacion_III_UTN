@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Ejemplo</title>
+  <link rel="stylesheet" href="styles_1.css">
+</head>
+<body>
+  <div class="formulario">
+    <h1>Formulario de Registro</h1>
+    <form action="procesar.php" method="post">
+        <label for="nombre"><strong>Nombre:</strong></label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo"><strong>Correo Electrónico:</strong></label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="contrasena"><strong>Contraseña:</strong></label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <label for="fechaNacimiento"><strong>Fecha de Nacimiento:</strong></label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+
+      <p class="subtitulo"><strong>Género:</strong></p>
+      <select name="genero" id="genero" required>
+        <option value="" disabled selected hidden>-- Selecciona una opción --</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="prefiero_no_decir">Prefiero no Decir</option>
+      </select>
+
+      <p class="subtitulo"><strong>Intereses:</strong></p>
+      <div class="interes">
+        <label for="musica">Música</label>
+        <input type="checkbox" id="musica" name="intereses[]" value="Música">
+      </div>
+      <div class="interes">
+        <label for="deportes">Deportes</label>
+        <input type="checkbox" id="deportes" name="intereses[]" value="Deportes">
+      </div>
+      <div class="interes">
+        <label for="lectura">Lectura</label>
+        <input type="checkbox" id="lectura" name="intereses[]" value="Lectura">
+      </div>
+      <div class="interes">
+        <label for="viajes">Viajes</label>
+        <input type="checkbox" id="viajes" name="intereses[]" value="Viajes">
+      </div>
+
+      <label for="comentarios"><strong>Comentarios:</strong></label>
+      <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+
+      <div class="botones">
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Borrar">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
