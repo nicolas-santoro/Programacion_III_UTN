@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+        <title>Ejemplo Asincronismo</title>
+    </head>
+    <body>
+        <h1>Texto que aparece enseguida</h1>
+        <p>La imagen se está cargando... Pero mientras tanto, podés leer esto...</p>
+
+        <!-- Imagen pesada (puede tardar) -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg" width="500" alt="Imagen grande">
+
+        <script>
+            console.log("✅ La página se está renderizando");
+            // Podés ver este mensaje antes de que se cargue la imagen
+        </script>
+    </body>
+</html>

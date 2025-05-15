@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Test de Códigos de Estado</title>
+    </head>
+    <body>
+        <h1>Probar códigos de estado HTTP</h1>
+
+        <label for="codigo">Elegí un código de estado (ej: 200, 404, 500):</label>
+        <br>
+        <input type="number" id="codigo" value="200">
+        <button id="probar">Probar</button>
+
+        <p id="resultado"></p>
+
+        <script>
+            document.getElementById("probar").addEventListener("click", async () => {
+                const codigo = document.getElementById("codigo").value;
+                const resultado = document.getElementById("resultado");
+
+                const mensajesError = {
+                    200: "✅ ¡Todo salió bien!",
+                    404: "❌ No se encontró la página (Error 404).",
+                    500: "❌ Error interno del servidor (Error 500).",
+                    403: "❌ No tienes permiso para acceder a este recurso (Error 403).",
+                    400: "❌ La solicitud es incorrecta (Error 400).",
+                };
+
+                try {
+                    const respuesta = await fetch(`https://httpstat.us/${codigo}`);
+                    resultado.innerHTML = `Código recibido: <strong>${respuesta.status}</strong><br>`;
+
+                    if (respuesta.ok) {
+                        resultado.innerHTML += mensajesError[respuesta.status] || "❌ Hubo un error con la solicitud.";
+                    } 
+                    
+                    else {
+                        // Si no es un código específico, mostramos un mensaje genérico de error
+                        resultado.innerHTML += mensajesError[respuesta.status] || "❌ Hubo un error con la solicitud.";
+                    }
+                } 
+                
+                catch (error) {
+                    resultado.textContent = "💥 Error al hacer la petición: " + error.message;
+                }
+            });
+        </script>
+    </body>
+</html>

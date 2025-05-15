@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejemplo Fetch Asincrónico</title>
+    </head>
+        <body>
+        <h1>¡Bienvenido al mundo Pokémon!</h1>
+        <p>Estamos buscando un Pokémon...</p>
+
+        <div id="pokemon-info">Cargando datos...</div>
+
+        <script>
+            console.log("✅ La página se está mostrando");
+
+            // Función asincrónica para obtener datos del Pokémon
+            async function obtenerPokemon() {
+                try {
+                    const respuesta = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+                    const datos = await respuesta.json();
+                    
+                    document.getElementById("pokemon-info").innerHTML = `
+                    <h2>Nombre: ${datos.name}</h2>
+                    <p>Peso: ${datos.weight}</p>
+                    <img src="${datos.sprites.front_default}" alt="Imagen de ${datos.name}">
+                    `;
+                } 
+                
+                catch (error) {
+                    document.getElementById("pokemon-info").textContent = "Error al obtener los datos.";
+                    console.error("❌ Error en la petición:", error);
+                }
+            }
+
+            // Llamar a la función
+            obtenerPokemon();
+        </script>
+    </body>
+</html>
