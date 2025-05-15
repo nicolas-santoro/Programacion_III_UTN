@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Pokemon_Font';
+    src: url('../../FONTS/Pokemon_Solid.ttf') format('truetype');
+  }  
+
+body {
+    margin: 0;
+    font-family: 'Pokemon_Font', sans-serif;
+    font-size: large;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('../../IMAGES/Pokemon_Go_Background.jpg');
+    background-size: cover;       /* hace que cubra toda la pantalla */
+    background-position: center;  /* lo centra */
+    background-repeat: no-repeat; /* evita que se repita */
+    height: 100vh;                /* ocupa el 100% de la altura visible */
+    margin: 0;
+    padding: 0;
+  }
+
+.contenido {
+    text-align: center;
+    }
+
+.titulo {
+    font-size: 5em;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: yellow;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 20px; /* 20 arriba/abajo y 40 izquierda/derecha */
+    border-radius: 20px; /* Esto lo hace redondeado */
+    }
+
+.galeria {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    }
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+    padding: 20px;
+    border-radius: 15px;
+    }
+
+.item img {
+    width: 250px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    }
+
+.item img:hover {
+    transform: scale(1.1);
+    }
+
+.item p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: orange;
+    font-size: 35px;
+    }  
