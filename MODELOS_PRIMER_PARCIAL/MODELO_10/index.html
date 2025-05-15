@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles.css">
+        <title>Mis Contactos</title>
+    </head>
+    <body>
+        <main class="container">
+            <h1>👋 ¡Bienvenido a tu Agenda! 👋</h1>
+
+            <form id="formulario">
+                <label for="nombreContacto">Nombre del Contacto</label>
+                <input type="text" name="nombreContacto" id="nombreContacto" required placeholder="Nombre del Contacto">
+                
+                <label for="telefonoContacto">Teléfono del Contacto</label>
+                <input type="number" name="telefonoContacto" id="telefonoContacto" required placeholder="Telefono del Contacto">
+
+                <label for="mailContacto">Email del Contacto</label>
+                <input type="email" name="mailContacto" id="mailContacto" required placeholder="Escribe tu email">
+
+                <button type="submit">ENVIAR</button>
+            </form>
+
+            <h2>Tus Contactos:</h2>
+
+            <ul id="listaContactos"></ul>
+        </main>
+
+        <script src="./main.js"></script>
+    </body>
+</html>

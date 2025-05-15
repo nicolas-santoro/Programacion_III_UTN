@@ -1,0 +1,99 @@
+/* Estilo general del contenedor */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Formulario fusionado */
+form {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+form input[type="text"] {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid #3498db;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+}
+
+form button[type="submit"] {
+  padding: 0.8rem 1.2rem;
+  background-color: #3498db;
+  color: white;
+  border: 1px solid #3498db;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Lista de tareas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li,
+ul ul {
+  background-color: #ecf0f1;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul span {
+  flex-grow: 1;
+  margin: 0 1rem;
+  font-size: 1rem;
+}
+
+/* Botones dentro de las tareas */
+button.eliminar,
+button.completar {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button.eliminar:hover {
+  color: #e74c3c;
+  transform: scale(1.2);
+}
+
+button.completar:hover {
+  color: #27ae60;
+  transform: scale(1.2);
+}
+
+/* Estilo si una tarea está completa (opcional, si lo aplicás con JS) */
+.completada span {
+  text-decoration: line-through;
+  color: #95a5a6;
+}

@@ -1,0 +1,91 @@
+/* General */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Galería de fotos */
+#listaPeliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Contenedor de cada foto */
+#listaPeliculas > div {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+/* Animación de salida */
+#listaPeliculas > div.saliendo {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Imagen */
+#listaPeliculas img {
+  width: 100%;
+  height: 666px;              /* Tamaño uniforme */
+  width: 500px;
+  object-fit: cover;          /* Mantiene proporciones sin deformar */
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+#listaPeliculas img:hover {
+  transform: scale(1.05);
+}
+
+/* Título */
+#listaPeliculas h5 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Botón eliminar */
+button.votar {
+  display: block;
+  margin: 0.5rem auto 0;
+  background-color: #4dff44;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.votar:hover {
+  background-color: #00cc29;
+}
+
+#volver {
+  display: block;
+  margin: 1rem auto 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#volver:hover {
+  background-color: #0056b3;
+}

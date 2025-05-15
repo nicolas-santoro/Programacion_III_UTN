@@ -1,0 +1,4 @@
+[
+  { "id": 1, "pregunta": "¿Te gustó el curso?", "opciones": ["Sí", "No"] },
+  { "id": 2, "pregunta": "¿Recomendarías este tema?", "opciones": ["Sí", "No"] }
+]

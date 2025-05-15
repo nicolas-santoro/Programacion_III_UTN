@@ -1,0 +1,96 @@
+/* General */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Formulario */
+form {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+form button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de contactos como tabla */
+#listaContactos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#listaContactos li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}
+
+#listaContactos li:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+#listaContactos li:last-child {
+  border-bottom: none;
+}
+
+/* Botón eliminar */
+.eliminar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.eliminar:hover {
+  background-color: #a71d2a;
+}
